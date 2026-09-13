@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Checkout | Spartan Advanced Research</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="age-guard.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">⚔</div>
+      <div><strong>Spartan Advanced Research</strong><span>Research purposes only</span></div>
+    </div>
+    <nav><a href="index.html" class="calc-button">← Back to Catalog</a></nav>
+  </header>
+
+  <main class="checkout-page">
+    <section class="checkout-panel">
+      <p class="eyebrow">CHECKOUT TEST BUILD</p>
+      <h1>Shipping Information</h1>
+      <p class="checkout-note">Shipping is quoted from USPS using destination and package weight. Prices and stock are verified again on the server before the order is created.</p>
+
+      <form id="checkoutForm">
+        <div class="form-grid two">
+          <div class="field">
+            <label for="firstName">First name</label>
+            <input id="firstName" name="firstName" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <input id="lastName" name="lastName" required autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="street">Street address</label>
+          <input id="street" name="street" required autocomplete="street-address">
+        </div>
+
+        <div class="field">
+          <label for="city">City</label>
+          <input id="city" name="city" required autocomplete="address-level2">
+        </div>
+
+        <div class="form-grid two">
+          <div class="field">
+            <label for="state">State</label>
+            <input id="state" name="state" required autocomplete="address-level1" maxlength="30">
+          </div>
+          <div class="field">
+            <label for="zip">ZIP code</label>
+            <input id="zip" name="zip" required autocomplete="postal-code" inputmode="numeric">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone (optional)</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+
+        <section class="order-review">
+          <h2>Order Review</h2>
+          <div id="reviewItems"></div>
+          <div class="review-total">
+            <span>Total</span>
+            <strong id="reviewTotal">$0.00</strong>
+          </div>
+        </section>
+
+        <label class="check checkout-check">
+          <input id="confirmInfo" type="checkbox" required>
+          I confirm the shipping information above is correct.
+        </label>
+
+        <button id="placeOrderBtn" class="primary full" type="submit">Create Order</button>
+      </form>
+    </section>
+  </main>
+
+<script>
+const cart = JSON.parse(localStorage.getItem('spartanCart') || '[]');
+let products=[];
+const money=c=>`$${(Number(c)/100).toFixed(2)}`;
+
+async function init(){
+  products=await fetch('products.json').then(r=>r.json());
+  if(!cart.length){
+    document.getElementById('checkoutForm').innerHTML='<p>Your cart is empty.</p><a class="primary" href="index.html">Return to Catalog</a>';
+    return;
+  }
+  renderReview();
+}
+function renderReview(){
+  const box=document.getElementById('reviewItems'); let cents=0; box.innerHTML='';
+  cart.forEach(row=>{
+    const p=products.find(x=>x.id===row.id); if(!p)return;
+    const line=Math.round(p.price*100)*row.qty; cents+=line;
+    const el=document.createElement('div'); el.className='review-row';
+    el.innerHTML=`<div><strong>${p.name}</strong><br><span>${p.strength} × ${row.qty}</span></div><strong>${money(line)}</strong>`;
+    box.appendChild(el);
+  });
+  document.getElementById('reviewTotal').textContent=`Merchandise: ${money(cents)} + USPS shipping`;
+}
+let submitting=false;
+function getCheckoutRequestId(){
+  let id=sessionStorage.getItem('spartanCheckoutRequestId');
+  if(!id){
+    id=(crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`);
+    sessionStorage.setItem('spartanCheckoutRequestId',id);
+  }
+  return id;
+}
+document.getElementById('checkoutForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(submitting) return;
+  submitting=true;
+  const btn=document.getElementById('placeOrderBtn'); btn.disabled=true; btn.textContent='Creating order…';
+  const f=new FormData(e.currentTarget);
+  const customer=Object.fromEntries(['firstName','lastName','email','phone','street','city','state','zip'].map(k=>[k,String(f.get(k)||'')]));
+  try{
+    const r=await fetch('/api/create-order',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({customer,cart,clientRequestId:getCheckoutRequestId()})});
+    const j=await r.json();
+    if(!r.ok){
+      if(j.code==='ORDER_EXPIRED') sessionStorage.removeItem('spartanCheckoutRequestId');
+      const e=new Error(j.error||'Could not create order.');
+      e.code=j.code;
+      throw e;
+    }
+    localStorage.setItem('spartanLastOrderId',j.orderId);
+    localStorage.setItem('spartanLastOrderToken',j.orderAccessToken);
+    sessionStorage.removeItem('spartanCheckoutRequestId');
+    window.location.href=`confirmation.html?order=${encodeURIComponent(j.orderId)}&token=${encodeURIComponent(j.orderAccessToken)}`;
+  }catch(err){
+    console.error(err);
+    const msg=/shipping/i.test(err.message||'')
+      ? 'We could not calculate shipping right now. Please try again.'
+      : /stock|available|out of stock/i.test(err.message||'')
+      ? err.message
+      : 'We could not create your order right now. Please try again.';
+    alert(msg);
+    submitting=false;
+    btn.disabled=false; btn.textContent='Create Order';
+  }
+});
+init();
+</script>
+</body>
+</html>

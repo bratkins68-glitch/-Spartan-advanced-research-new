@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Spartan Advanced Research</title>
+  <meta name="description" content="Spartan Advanced Research catalog">
+  <link rel="stylesheet" href="styles.css">
+  <script src="age-guard.js"></script>
+</head>
+<body>
+  <div id="ageGate" class="age-gate">
+    <div class="age-card">
+      <div class="helmet">⚔</div>
+      <h1>Spartan Advanced Research</h1>
+      <p>This site is intended for adults 18+ and for research-use products only.</p>
+      <label class="check"><input id="ageCheck" type="checkbox"> I confirm I am 18 or older.</label>
+      <button id="enterBtn" class="primary" disabled>Enter Site</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">⚔</div>
+      <div>
+        <strong>Spartan Advanced Research</strong>
+        <span>Research purposes only</span>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Catalog</a>
+      <a href="track.html" class="secondary-link">Track Order</a>
+      <a href="calculator.html" class="secondary-link">Peptide Calculator</a>
+      <button id="cartBtn" class="cart-button">Cart <span id="cartCount">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">SPARTAN ADVANCED RESEARCH</p>
+      <h1>Research catalog, rebuilt cleanly.</h1>
+      <p>Simple pricing, clear stock status, and a checkout flow we can test before connecting live payments.</p>
+    </section>
+
+    <section class="toolbar">
+      <input id="searchInput" type="search" placeholder="Search catalog…">
+      <select id="stockFilter">
+        <option value="all">All products</option>
+        <option value="in">In stock</option>
+        <option value="out">Out of stock</option>
+      </select>
+    </section>
+
+    <section>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+  </main>
+
+
+  <div id="productModal" class="product-modal" aria-hidden="true">
+    <div class="product-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="closeProductModal" class="modal-close" aria-label="Close">×</button>
+      <p class="eyebrow">PRODUCT DETAILS</p>
+      <h2 id="modalTitle"></h2>
+      <div id="modalStrength" class="modal-strength"></div>
+      <p id="modalDescription" class="modal-description"></p>
+      <div class="modal-meta">
+        <span id="modalStock" class="stock"></span>
+        <strong id="modalPrice" class="modal-price"></strong>
+      </div>
+      <button id="modalAddToCart" class="primary full">Add to Cart</button>
+    </div>
+  </div>
+
+  <aside id="cartPanel" class="cart-panel" aria-hidden="true">
+    <div class="cart-head">
+      <h2>Your cart</h2>
+      <button id="closeCart" class="icon-btn">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cartTotal">$0.00</strong>
+    </div>
+    <button id="checkoutBtn" class="primary full">Continue to Checkout</button>
+    <p class="small">Shipping and payment are verified during checkout.</p>
+  </aside>
+
+  <div id="overlay" class="overlay"></div>
+
+  <footer>
+    <p>For research purposes only. Not for human consumption.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

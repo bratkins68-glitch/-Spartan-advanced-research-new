@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Invoice | Spartan Advanced Research</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header no-print">
+    <div class="brand">
+      <div class="brand-mark">⚔</div>
+      <div><strong>Spartan Advanced Research</strong><span>Research purposes only</span></div>
+    </div>
+    <nav><a href="index.html" class="calc-button">Return to Catalog</a></nav>
+  </header>
+
+  <main class="invoice-page">
+    <article id="invoice" class="invoice-sheet">
+      <div class="invoice-header">
+        <div>
+          <div class="invoice-brand">SPARTAN ADVANCED RESEARCH</div>
+          <div class="invoice-sub">Research purposes only</div>
+        </div>
+        <div class="invoice-title">
+          <h1>INVOICE</h1>
+          <div id="invoiceNumber"></div>
+          <div id="invoiceDate"></div>
+        </div>
+      </div>
+
+      <div class="invoice-addresses">
+        <section>
+          <h3>SHIP TO</h3>
+          <div id="shipTo"></div>
+        </section>
+        <section>
+          <h3>CUSTOMER</h3>
+          <div id="customerInfo"></div>
+        </section>
+      </div>
+
+      <div class="invoice-status" id="invoiceStatus"></div>
+
+      <div class="invoice-table-wrap">
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Strength</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceItems"></tbody>
+        </table>
+      </div>
+
+      <div class="invoice-totals">
+        <div><span>Subtotal</span><strong id="subtotal"></strong></div>
+        <div><span>Shipping</span><strong id="shipping"></strong></div>
+        <div class="grand"><span>Total</span><strong id="grandTotal"></strong></div>
+      </div>
+
+      <p class="invoice-footer">For research purposes only. Not for human consumption.</p>
+    </article>
+
+    <div class="invoice-actions no-print">
+      <button class="primary" id="printInvoice">Print / Save Invoice</button>
+      <button class="details-btn" id="finishOrder">Finish Test Order</button>
+    </div>
+  </main>
+
+<script>
+const order = JSON.parse(localStorage.getItem('spartanLastOrder') || 'null');
+const money = n => `$${Number(n).toFixed(2)}`;
+
+if(!order){
+  document.getElementById('invoice').innerHTML = '<p>No order was found.</p>';
+} else {
+  document.getElementById('invoiceNumber').textContent = `Invoice: ${order.orderId}`;
+  document.getElementById('invoiceDate').textContent =
+    new Date(order.createdAt).toLocaleString();
+  document.getElementById('invoiceStatus').textContent = order.status;
+
+  const a = order.shippingAddress;
+  document.getElementById('shipTo').innerHTML =
+    `<strong>${a.name}</strong><br>${a.street}<br>${a.city}, ${a.state} ${a.zip}`;
+
+  const c = order.customer;
+  document.getElementById('customerInfo').innerHTML =
+    `${c.email}${c.phone ? '<br>'+c.phone : ''}`;
+
+  const tbody = document.getElementById('invoiceItems');
+  order.items.forEach(item=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${item.name}</td><td>${item.strength}</td><td>${item.qty}</td><td>${money(item.unitPrice)}</td><td>${money(item.lineTotal)}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('subtotal').textContent = money(order.subtotal);
+  document.getElementById('shipping').textContent = money(order.shipping);
+  document.getElementById('grandTotal').textContent = money(order.total);
+}
+
+document.getElementById('printInvoice').addEventListener('click',()=>window.print());
+document.getElementById('finishOrder').addEventListener('click',()=>{
+  localStorage.removeItem('spartanCart');
+  window.location.href='index.html';
+});
+</script>
+</body>
+</html>

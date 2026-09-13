@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order Admin | Spartan Advanced Research</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><div class="brand-mark">⚔</div><div><strong>Spartan Advanced Research</strong><span>Order Management</span></div></div>
+  <nav><button id="logoutBtn" class="details-btn" hidden>Log out</button></nav>
+</header>
+
+<main class="checkout-page">
+  <section id="loginPanel" class="checkout-panel admin-login">
+    <p class="eyebrow">PRIVATE ADMIN</p>
+    <h1>Order Management</h1>
+    <form id="loginForm">
+      <div class="field">
+        <label for="password">Admin password</label>
+        <input id="password" type="password" required autocomplete="current-password">
+      </div>
+      <button class="primary full" type="submit">Sign In</button>
+    </form>
+  </section>
+
+  <section id="ordersPanel" class="checkout-panel" hidden>
+    <div class="admin-top">
+      <div>
+        <p class="eyebrow">PRIVATE ADMIN</p>
+        <h1>Orders</h1>
+      </div>
+      <button id="refreshBtn" class="details-btn">Refresh</button>
+    </div>
+    <div class="admin-filterbar">
+          <input id="orderSearch" placeholder="Search order, customer, email">
+          <select id="statusFilter">
+            <option value="">All statuses</option>
+            <option>Awaiting Payment</option>
+            <option>Paid</option>
+            <option>Processing</option>
+            <option>Shipped</option>
+            <option>Cancelled</option>
+            <option>Expired</option>
+            <option>Payment Failed</option>
+            <option>Refunded</option>
+            <option>Partially Paid</option>
+          </select>
+        </div>
+        <div id="ordersList"></div>
+  </section>
+
+  <section id="inventoryPanel" class="checkout-panel" hidden>
+    <div class="admin-top"><div><p class="eyebrow">PRIVATE ADMIN</p><h2>Inventory</h2></div><button id="refreshInventoryBtn" class="details-btn">Refresh Inventory</button></div>
+    <p class="muted">Leave quantity blank to track only In Stock / Out of Stock. Enter a number when you want exact quantity tracking.</p>
+    <div id="inventoryList"></div>
+  </section>
+</main>
+
+<script>
+const money=c=>`$${(Number(c)/100).toFixed(2)}`;
+const loginPanel=document.getElementById('loginPanel');
+const ordersPanel=document.getElementById('ordersPanel');
+const logoutBtn=document.getElementById('logoutBtn');
+let cachedOrders=[];
+
+
+async function loadInventory(){
+  const r=await fetch('/api/admin-inventory');
+  if(r.status===401){showLogin();return}
+  const j=await r.json();
+  if(!r.ok){alert(j.error||'Could not load inventory');return}
+  const products=await fetch('/products.json').then(x=>x.json());
+  const byId=Object.fromEntries(products.map(p=>[p.id,p]));
+  const box=document.getElementById('inventoryList');
+  box.innerHTML=(j.inventory||[]).map(i=>{
+    const p=byId[i.productId]||{name:i.productId,strength:''};
+    return `<div class="inventory-row">
+      <div><strong>${p.name} ${p.strength}</strong></div>
+      <input id="qty-${i.productId}" inputmode="numeric" placeholder="Untracked" value="${i.quantity===null?'':i.quantity}">
+      <label><input id="active-${i.productId}" type="checkbox" ${i.isActive?'checked':''}> In Stock</label>
+      <button class="primary" onclick="saveInventory('${i.productId}')">Save</button>
+    </div>`;
+  }).join('');
+}
+async function saveInventory(productId){
+  const raw=document.getElementById('qty-'+productId).value.trim();
+  const quantity=raw===''?null:Number(raw);
+  const isActive=document.getElementById('active-'+productId).checked;
+  const r=await fetch('/api/admin-update-inventory',{
+    method:'POST',
+    headers:{'content-type':'application/json'},
+    body:JSON.stringify({productId,quantity,isActive})
+  });
+  const j=await r.json();
+  if(!r.ok){alert(j.error||'Could not update inventory');return}
+  loadInventory();
+}
+
+async function loadOrders(){
+  const r=await fetch('/api/admin-orders');
+  if(r.status===401){ showLogin(); return; }
+  const j=await r.json();
+  if(!r.ok){ alert(j.error||'Could not load orders'); return; }
+  cachedOrders=j.orders||[]; applyOrderFilters(); loadInventory(); document.getElementById('inventoryPanel').hidden=false;
+}
+function showLogin(){
+  loginPanel.hidden=false; ordersPanel.hidden=true; document.getElementById('inventoryPanel').hidden=true; logoutBtn.hidden=true;
+}
+
+function applyOrderFilters(){
+  const q=(document.getElementById('orderSearch')?.value||'').trim().toLowerCase();
+  const status=document.getElementById('statusFilter')?.value||'';
+  const filtered=cachedOrders.filter(o=>{
+    if(status && o.status!==status) return false;
+    if(!q) return true;
+    const hay=[
+      o.id,o.status,o.customer?.email,o.customer?.firstName,o.customer?.lastName,
+      o.shipping?.name,o.shipping?.city,o.shipping?.state,o.trackingNumber
+    ].filter(Boolean).join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+  showOrders(filtered);
+}
+
+function showOrders(orders){
+  loginPanel.hidden=true; ordersPanel.hidden=false; logoutBtn.hidden=false;
+  const box=document.getElementById('ordersList');
+  if(!orders.length){ box.innerHTML='<p>No orders yet.</p>'; return; }
+  box.innerHTML=orders.map(o=>{
+    const a=o.shipping||{}, c=o.customer||{};
+    const items=(o.items||[]).map(i=>`${i.name} ${i.strength} × ${i.qty}`).join('<br>');
+    return `<article class="admin-order-card">
+      <div class="admin-order-head">
+        <div><strong>${o.id}</strong><br><span>${new Date(o.createdAt).toLocaleString()}</span></div>
+        <strong>${money(o.totalCents)}</strong>
+      </div>
+      <div class="admin-order-grid">
+        <div><b>Status</b><br>${o.status}</div>
+        <div><b>Payment</b><br>${o.paymentStatus||'Not started'}</div>
+        <div><b>Ship to</b><br>${a.name||''}<br>${a.street||''}<br>${a.city||''}, ${a.state||''} ${a.zip||''}</div>
+        <div><b>Customer</b><br>${c.email||''}${c.phone?'<br>'+c.phone:''}</div>
+      </div>
+      <div class="admin-items">${items}</div>
+      <div class="admin-actions">
+        <select id="status-${o.id}">
+          ${['Awaiting Payment','Paid','Processing','Shipped','Cancelled','Expired','Payment Failed','Refunded','Partially Paid'].map(s=>`<option ${s===o.status?'selected':''}>${s}</option>`).join('')}
+        </select>
+        <input id="tracking-${o.id}" placeholder="USPS tracking number" value="${o.trackingNumber||''}">
+        <input id="note-${o.id}" placeholder="Optional note">
+        <button class="primary" onclick="updateStatus('${o.id}')">Update</button>
+        <a class="details-btn" target="_blank" href="/api/invoice?order=${encodeURIComponent(o.id)}">Invoice</a>
+      </div>
+    </article>`;
+  }).join('');
+}
+async function updateStatus(id){
+  const status=document.getElementById('status-'+id).value;
+  const note=document.getElementById('note-'+id).value;
+  const trackingNumber=document.getElementById('tracking-'+id).value;
+  const r=await fetch('/api/admin-update-order',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({orderId:id,status,note,trackingNumber})});
+  const j=await r.json();
+  if(!r.ok){alert(j.error||'Could not update');return}
+  loadOrders();
+}
+document.getElementById('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const password=document.getElementById('password').value;
+  const r=await fetch('/api/admin-login',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({password})});
+  const j=await r.json();
+  if(!r.ok){alert(j.error||'Sign in failed');return}
+  document.getElementById('password').value='';
+  loadOrders();
+});
+document.getElementById('refreshBtn').addEventListener('click',loadOrders);
+document.getElementById('refreshInventoryBtn').addEventListener('click',loadInventory);
+document.getElementById('orderSearch').addEventListener('input',applyOrderFilters);
+document.getElementById('statusFilter').addEventListener('change',applyOrderFilters);
+logoutBtn.addEventListener('click',async()=>{await fetch('/api/admin-logout',{method:'POST'});showLogin()});
+loadOrders();
+</script>
+</body>
+</html>

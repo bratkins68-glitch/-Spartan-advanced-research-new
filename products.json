@@ -1,0 +1,164 @@
+[
+  {
+    "id": "reta-10",
+    "name": "Reta",
+    "strength": "10 mg",
+    "price": 45,
+    "status": "In Stock",
+    "description": "Research-use peptide product commonly studied in metabolic and receptor-signaling research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "reta-20",
+    "name": "Reta",
+    "strength": "20 mg",
+    "price": 75,
+    "status": "In Stock",
+    "description": "Research-use peptide product commonly studied in metabolic and receptor-signaling research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "mots-c-10",
+    "name": "MOTS-C",
+    "strength": "10 mg",
+    "price": 45,
+    "status": "In Stock",
+    "description": "Research-use mitochondrial-derived peptide commonly studied in cellular energy and metabolic research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "mots-c-20",
+    "name": "MOTS-C",
+    "strength": "20 mg",
+    "price": 65,
+    "status": "In Stock",
+    "description": "Research-use mitochondrial-derived peptide commonly studied in cellular energy and metabolic research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "bpc-157-10",
+    "name": "BPC-157",
+    "strength": "10 mg",
+    "price": 45,
+    "status": "In Stock",
+    "description": "Research-use peptide commonly studied in tissue, cellular, and recovery-related laboratory research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "kpv-5",
+    "name": "KPV",
+    "strength": "5 mg",
+    "price": 35,
+    "status": "In Stock",
+    "description": "Research-use peptide fragment commonly studied in inflammation-related laboratory research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "kpv-10",
+    "name": "KPV",
+    "strength": "10 mg",
+    "price": 40,
+    "status": "In Stock",
+    "description": "Research-use peptide fragment commonly studied in inflammation-related laboratory research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "tb-500-10",
+    "name": "TB-500",
+    "strength": "10 mg",
+    "price": 60,
+    "status": "In Stock",
+    "description": "Research-use peptide commonly studied in tissue and cellular repair research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "klow-80",
+    "name": "KLOW",
+    "strength": "80 mg",
+    "price": 75,
+    "status": "In Stock",
+    "description": "Research-use blend intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "glow-70",
+    "name": "GLOW",
+    "strength": "70 mg",
+    "price": 65,
+    "status": "In Stock",
+    "description": "Research-use blend intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "tesamorelin-10",
+    "name": "Tesamorelin",
+    "strength": "10 mg",
+    "price": 50,
+    "status": "In Stock",
+    "description": "Research-use peptide commonly studied in growth-hormone-releasing pathway research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "mt1-10",
+    "name": "MT-1",
+    "strength": "10 mg",
+    "price": 35,
+    "status": "In Stock",
+    "description": "Research-use peptide commonly studied in melanocortin-related laboratory research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "mt2-10",
+    "name": "MT-2",
+    "strength": "10 mg",
+    "price": 45,
+    "status": "In Stock",
+    "description": "Research-use peptide commonly studied in melanocortin-related laboratory research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "ghkcu-50",
+    "name": "GHK-CU",
+    "strength": "50 mg",
+    "price": 30,
+    "status": "In Stock",
+    "description": "Research-use copper peptide commonly studied in skin, tissue, and cellular research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "ghkcu-100",
+    "name": "GHK-CU",
+    "strength": "100 mg",
+    "price": 40,
+    "status": "In Stock",
+    "description": "Research-use copper peptide commonly studied in skin, tissue, and cellular research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "nad-500",
+    "name": "NAD+",
+    "strength": "500 mg",
+    "price": 45,
+    "status": "In Stock",
+    "description": "Research-use coenzyme commonly studied in cellular energy and redox biology research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "nad-1000",
+    "name": "NAD+",
+    "strength": "1000 mg",
+    "price": 75,
+    "status": "In Stock",
+    "description": "Research-use coenzyme commonly studied in cellular energy and redox biology research.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "cjc-ipa",
+    "name": "CJC-1295 + Ipamorelin",
+    "strength": "5 mg + 5 mg",
+    "price": 60,
+    "status": "In Stock",
+    "description": "Research-use peptide combination commonly studied in growth-hormone signaling research.",
+    "shippingWeightOz": 0.2116
+  }
+]

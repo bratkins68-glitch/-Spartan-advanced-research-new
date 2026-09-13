@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Track Order | Spartan Advanced Research</title>
+<link rel="stylesheet" href="styles.css">
+<script src="age-guard.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="brand"><div class="brand-mark">⚔</div><div><strong>Spartan Advanced Research</strong><span>Research purposes only</span></div></div>
+  <nav><a href="index.html" class="calc-button">Catalog</a></nav>
+</header>
+<main class="checkout-page">
+  <section class="checkout-panel">
+    <p class="eyebrow">ORDER STATUS</p>
+    <h1>Track Your Order</h1>
+    <form id="trackForm">
+      <div class="field"><label for="orderId">Order number</label><input id="orderId" required placeholder="SAR-..."></div>
+      <div class="field"><label for="email">Email used at checkout</label><input id="email" type="email" required></div>
+      <button class="primary full" type="submit">Check Status</button>
+    </form>
+    <div id="result" class="track-result"></div>
+  </section>
+</main>
+<script>
+document.getElementById('trackForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const box=document.getElementById('result');
+  box.innerHTML='<p>Checking order…</p>';
+  const order=document.getElementById('orderId').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const r=await fetch(`/api/track-order?order=${encodeURIComponent(order)}&email=${encodeURIComponent(email)}`);
+  const j=await r.json();
+  if(!r.ok){
+    box.innerHTML=`<p class="error-text">${r.status===404 ? 'We could not find that order. Check the order number and email address.' : 'We could not check the order right now. Please try again.'}</p>`;
+    return
+  }
+  box.innerHTML=`
+    <div class="tracking-box">
+      <p class="eyebrow">CURRENT STATUS</p>
+      <h2>${j.status}</h2>
+      <p><strong>Order:</strong> ${j.orderId}</p>
+      <p><strong>Placed:</strong> ${new Date(j.createdAt).toLocaleString()}</p>
+      ${j.shippedAt?`<p><strong>Shipped:</strong> ${new Date(j.shippedAt).toLocaleString()}</p>`:''}
+      ${j.trackingNumber?`<p><strong>USPS tracking:</strong> ${j.trackingNumber}</p>`:''}
+      <div>${j.items.map(i=>`${i.name} ${i.strength} × ${i.qty}`).join('<br>')}</div>
+    </div>`;
+});
+</script>
+</body>
+</html>

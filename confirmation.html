@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order | Spartan Advanced Research</title><link rel="stylesheet" href="styles.css">
+  <script src="age-guard.js"></script>
+</head>
+<body>
+<header class="site-header"><div class="brand"><div class="brand-mark">⚔</div><div><strong>Spartan Advanced Research</strong><span>Research purposes only</span></div></div><nav><a href="index.html" class="calc-button">Catalog</a></nav></header>
+<main class="checkout-page"><section class="checkout-panel">
+<p class="eyebrow">ORDER CONFIRMATION</p><h1 id="title">Loading order…</h1>
+<div id="statusBox" class="invoice-status"></div>
+<div id="summary"></div>
+<div class="confirmation-actions">
+<button id="payBtn" class="primary full" disabled>Pay with Crypto</button>
+<a id="invoiceLink" class="details-btn full-link" target="_blank">View / Print PDF Invoice</a>
+</div>
+<p class="small">NOWPayments is configured so the customer covers payment-provider fees. The amount requested by the crypto payment page can therefore be higher than the merchandise + USPS shipping total.</p>
+</section></main>
+<script>
+const params=new URLSearchParams(location.search);
+const id=params.get('order');
+const token=params.get('token') || localStorage.getItem('spartanLastOrderToken') || '';
+const money=c=>`$${(Number(c)/100).toFixed(2)}`;
+let order=null;
+async function load(){
+  const r=await fetch(`/api/get-order?id=${encodeURIComponent(id||'')}&token=${encodeURIComponent(token)}`); const j=await r.json();
+  if(!r.ok){document.getElementById('title').textContent=j.error||'Order not found';return}
+  order=j;
+  document.getElementById('title').textContent=`Order ${order.id}`;
+  document.getElementById('statusBox').textContent=order.status;
+  document.getElementById('summary').innerHTML=`
+    ${order.items.map(i=>`<div class="review-row"><div><strong>${i.name}</strong><br>${i.strength} × ${i.qty}</div><strong>${money(i.lineCents)}</strong></div>`).join('')}
+    <div class="review-row"><span>USPS shipping</span><strong>${money(order.shippingCents)}</strong></div>
+    <div class="review-total"><span>Total</span><strong>${money(order.totalCents)}</strong></div>
+    ${order.trackingNumber?`<div class="tracking-box"><strong>USPS Tracking</strong><br>${order.trackingNumber}</div>`:''}
+    ${order.status==='Awaiting Payment'&&order.expiresAt?`<p class="small">This unpaid order expires at ${new Date(order.expiresAt).toLocaleString()}.</p>`:''}`;
+  const inv=document.getElementById('invoiceLink'); inv.href=`/api/invoice?order=${encodeURIComponent(order.id)}&token=${encodeURIComponent(token)}`;
+  const pay=document.getElementById('payBtn');
+  if(['Paid','Processing','Shipped'].includes(order.status)){
+    pay.textContent=order.status==='Shipped'?'Order shipped':'Payment received';
+    pay.disabled=true;
+    localStorage.removeItem('spartanCart');
+  } else if(['Expired','Cancelled','Payment Failed','Refunded'].includes(order.status)){
+    pay.textContent=order.status;
+    pay.disabled=true;
+  } else {
+    pay.disabled=false;
+    pay.textContent='Pay with Crypto';
+  }
+}
+document.getElementById('payBtn').addEventListener('click',async()=>{
+  const btn=document.getElementById('payBtn');btn.disabled=true;btn.textContent='Opening secure payment…';
+  try{
+    const r=await fetch('/api/create-payment',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({orderId:order.id,accessToken:token})});
+    const j=await r.json(); if(!r.ok) throw new Error(j.error||'Could not create payment.');
+    location.href=j.paymentUrl;
+  }catch(e){console.error(e);alert('We could not start the payment page right now. Please try again.');btn.disabled=false;btn.textContent='Pay with Crypto'}
+});
+load();
+</script>
+</body></html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Research Calculator | Spartan Advanced Research</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="age-guard.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">⚔</div>
+      <div><strong>Spartan Advanced Research</strong><span>Research purposes only</span></div>
+    </div>
+    <nav><a href="index.html" class="calc-button">← Back to Catalog</a></nav>
+  </header>
+  <main>
+    <div class="calc-wrap">
+      <p class="eyebrow">SEPARATE PAGE</p>
+      <h1>Research Calculator</h1>
+      <p>This calculator is kept off the main catalog as requested.</p>
+
+      <div class="field"><label>Total amount in vial (mg)</label><input id="mg" type="number" min="0" step="0.01" placeholder="10"></div>
+      <div class="field"><label>Liquid volume (mL)</label><input id="ml" type="number" min="0" step="0.01" placeholder="2"></div>
+      <div class="field"><label>Desired research amount (mg)</label><input id="dose" type="number" min="0" step="0.01" placeholder="1"></div>
+      <button id="calcBtn" class="primary full">Calculate</button>
+      <div id="result" class="result">Enter values above.</div>
+      <p class="notice">For laboratory calculation/reference only. This page does not provide medical or dosing advice.</p>
+    </div>
+  </main>
+<script>
+document.getElementById('calcBtn').addEventListener('click',()=>{
+  const mg = Number(document.getElementById('mg').value);
+  const ml = Number(document.getElementById('ml').value);
+  const dose = Number(document.getElementById('dose').value);
+  const out = document.getElementById('result');
+  if(mg<=0 || ml<=0 || dose<=0){ out.textContent='Enter numbers greater than zero.'; return; }
+  const concentration = mg/ml;
+  const neededMl = dose/concentration;
+  out.textContent = `${neededMl.toFixed(3)} mL`;
+});
+</script>
+</body>
+</html>
