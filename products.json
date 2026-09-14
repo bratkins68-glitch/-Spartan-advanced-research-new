@@ -160,5 +160,14 @@
     "status": "In Stock",
     "description": "Research-use peptide combination commonly studied in growth-hormone signaling research.",
     "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "5-amino-1mq-10",
+    "name": "5-Amino-1MQ",
+    "strength": "10 mg",
+    "price": 50,
+    "status": "In Stock",
+    "description": "Research-use compound intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
   }
 ]
