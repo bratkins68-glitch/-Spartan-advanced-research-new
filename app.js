@@ -46,7 +46,7 @@ function renderProducts(){
     const matches = `${p.name} ${p.strength}`.toLowerCase().includes(q);
     const isIn = p.status === 'In Stock';
     const image = productImages[p.id];
-    const stockOk = filter === 'all' || (filter === 'in' && isIn) || (filter === 'out' && !${productImages[p.id] ? `<img class="product-image" src="${productImages[p.id]}" alt="${p.name} ${p.strength}">` : ''}
+const stockOk = filter === 'all' || (filter === 'in' && isIn) || (filter === 'out' && !isIn);
     return matches && stockOk;
   }).forEach(p=>{
     const isIn = p.status === 'In Stock';
