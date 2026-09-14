@@ -57,6 +57,9 @@ const stockOk = filter === 'all' || (filter === 'in' && isIn) || (filter === 'ou
     card.setAttribute('aria-label',`View details for ${p.name} ${p.strength}`);
     card.dataset.product=p.id;
     card.innerHTML = `
+
+      ${productImages[p.id] ? `<img class="product-image" src="${productImages[p.id]}" alt="${p.name} ${p.strength}">` : ''}
+
       <h3>${p.name}</h3>
       <div class="strength">${p.strength}</div>
       <p>${p.description}</p>
