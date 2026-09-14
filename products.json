@@ -169,5 +169,59 @@
     "status": "In Stock",
     "description": "Research-use compound intended for laboratory research applications.",
     "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "selank-10",
+    "name": "Selank",
+    "strength": "10 mg",
+    "price": 35,
+    "status": "In Stock",
+    "description": "Research-use peptide intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "semax-10",
+    "name": "Semax",
+    "strength": "10 mg",
+    "price": 30,
+    "status": "In Stock",
+    "description": "Research-use peptide intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "dsip-10",
+    "name": "DSIP",
+    "strength": "10 mg",
+    "price": 30,
+    "status": "In Stock",
+    "description": "Research-use peptide intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "ara290-10",
+    "name": "ARA290",
+    "strength": "10 mg",
+    "price": 65,
+    "status": "In Stock",
+    "description": "Research-use peptide intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "b12-1ml",
+    "name": "B12",
+    "strength": "1 mL",
+    "price": 25,
+    "status": "In Stock",
+    "description": "Research-use product intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
+  },
+  {
+    "id": "glutathione-1500",
+    "name": "Glutathione",
+    "strength": "1500 mg",
+    "price": 50,
+    "status": "In Stock",
+    "description": "Research-use compound intended for laboratory research applications.",
+    "shippingWeightOz": 0.2116
   }
 ]
