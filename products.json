@@ -6,7 +6,8 @@
     "price": 45,
     "status": "In Stock",
     "description": "Research-use peptide product commonly studied in metabolic and receptor-signaling research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "1_Reta_10mg.png"
   },
   {
     "id": "reta-20",
@@ -15,7 +16,8 @@
     "price": 75,
     "status": "In Stock",
     "description": "Research-use peptide product commonly studied in metabolic and receptor-signaling research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "2_Reta_20mg.png"
   },
   {
     "id": "mots-c-10",
@@ -24,7 +26,8 @@
     "price": 45,
     "status": "In Stock",
     "description": "Research-use mitochondrial-derived peptide commonly studied in cellular energy and metabolic research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "3_MOTSC_10mg.png"
   },
   {
     "id": "mots-c-20",
@@ -33,7 +36,8 @@
     "price": 65,
     "status": "In Stock",
     "description": "Research-use mitochondrial-derived peptide commonly studied in cellular energy and metabolic research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "4_MOTSC_20mg.png"
   },
   {
     "id": "bpc-157-10",
@@ -42,7 +46,8 @@
     "price": 45,
     "status": "In Stock",
     "description": "Research-use peptide commonly studied in tissue, cellular, and recovery-related laboratory research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "5_BPC157_10mg.png"
   },
   {
     "id": "kpv-5",
@@ -51,7 +56,8 @@
     "price": 35,
     "status": "In Stock",
     "description": "Research-use peptide fragment commonly studied in inflammation-related laboratory research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "6_KPV_5mg.png"
   },
   {
     "id": "kpv-10",
@@ -60,7 +66,8 @@
     "price": 40,
     "status": "In Stock",
     "description": "Research-use peptide fragment commonly studied in inflammation-related laboratory research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "7_KPV_10mg.png"
   },
   {
     "id": "tb-500-10",
@@ -69,7 +76,8 @@
     "price": 60,
     "status": "In Stock",
     "description": "Research-use peptide commonly studied in tissue and cellular repair research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "8_TB500_10mg.png"
   },
   {
     "id": "klow-80",
@@ -78,7 +86,8 @@
     "price": 75,
     "status": "In Stock",
     "description": "Research-use blend intended for laboratory research applications.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "9_KLOW_80mg.png"
   },
   {
     "id": "glow-70",
@@ -87,7 +96,8 @@
     "price": 65,
     "status": "In Stock",
     "description": "Research-use blend intended for laboratory research applications.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "10_GLOW_70mg.png"
   },
   {
     "id": "tesamorelin-10",
@@ -96,7 +106,8 @@
     "price": 50,
     "status": "In Stock",
     "description": "Research-use peptide commonly studied in growth-hormone-releasing pathway research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "11_Tesamorelin_10mg.png"
   },
   {
     "id": "mt1-10",
@@ -105,7 +116,8 @@
     "price": 35,
     "status": "In Stock",
     "description": "Research-use peptide commonly studied in melanocortin-related laboratory research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "12_MT1_10mg.png"
   },
   {
     "id": "mt2-10",
@@ -114,7 +126,8 @@
     "price": 45,
     "status": "In Stock",
     "description": "Research-use peptide commonly studied in melanocortin-related laboratory research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "13_MT2_10mg.png"
   },
   {
     "id": "ghkcu-50",
@@ -123,7 +136,8 @@
     "price": 30,
     "status": "In Stock",
     "description": "Research-use copper peptide commonly studied in skin, tissue, and cellular research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "14_GHKCU_50mg.png"
   },
   {
     "id": "ghkcu-100",
@@ -132,7 +146,8 @@
     "price": 40,
     "status": "In Stock",
     "description": "Research-use copper peptide commonly studied in skin, tissue, and cellular research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "15_GHKCU_100mg.png"
   },
   {
     "id": "nad-500",
@@ -141,7 +156,8 @@
     "price": 45,
     "status": "In Stock",
     "description": "Research-use coenzyme commonly studied in cellular energy and redox biology research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "16_NAD_500mg.png"
   },
   {
     "id": "nad-1000",
@@ -150,7 +166,8 @@
     "price": 75,
     "status": "In Stock",
     "description": "Research-use coenzyme commonly studied in cellular energy and redox biology research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "17_NAD_1000mg.png"
   },
   {
     "id": "cjc-ipa",
@@ -159,6 +176,17 @@
     "price": 60,
     "status": "In Stock",
     "description": "Research-use peptide combination commonly studied in growth-hormone signaling research.",
-    "shippingWeightOz": 0.2116
+    "shippingWeightOz": 0.2116,
+    "image": "18_CJC1295_Ipamorelin_5mg5mg.png"
+  },
+  {
+    "id": "amino-1mq-50",
+    "name": "5-Amino-1MQ",
+    "strength": "50 mg",
+    "price": 55,
+    "status": "In Stock",
+    "description": "Research-use compound commonly studied in metabolic and NAD+ biology research.",
+    "shippingWeightOz": 0.2116,
+    "image": "28_5-Amino-1MQ_50mg.png"
   }
 ]
