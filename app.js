@@ -42,6 +42,7 @@ function renderProducts(){
     card.setAttribute('aria-label',`View details for ${p.name} ${p.strength}`);
     card.dataset.product=p.id;
     card.innerHTML = `
+      ${p.image ? `<img src="${p.image}" alt="${p.name} ${p.strength} vial" class="product-image">` : ''}
       <h3>${p.name}</h3>
       <div class="strength">${p.strength}</div>
       <p>${p.description}</p>
