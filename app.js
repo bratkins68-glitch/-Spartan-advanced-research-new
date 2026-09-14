@@ -2,7 +2,21 @@ const $ = s => document.querySelector(s);
 let products = [];
 let cart = JSON.parse(localStorage.getItem('spartanCart') || '[]');
 let activeProductId = null;
+const productImages = {
 
+  'selank-10': 'Selank_10mg.png',
+
+  'semax-10': 'Semax_10mg.png',
+
+  'dsip-10': 'DSIP_10mg.png',
+
+  'ara290-10': 'ARA290_10mg.png',
+
+  'b12-1ml': 'B12_1mL.png',
+
+  'glutathione-1500': 'Glutathione_1500mg.png'
+
+};
 function money(n){ return `$${Number(n).toFixed(2)}`; }
 
 async function loadProducts(){
@@ -31,6 +45,7 @@ function renderProducts(){
   products.filter(p=>{
     const matches = `${p.name} ${p.strength}`.toLowerCase().includes(q);
     const isIn = p.status === 'In Stock';
+    const image = productImages[p.id];
     const stockOk = filter === 'all' || (filter === 'in' && isIn) || (filter === 'out' && !isIn);
     return matches && stockOk;
   }).forEach(p=>{
