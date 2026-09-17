@@ -6,7 +6,7 @@ let activeProductId = null;
 const productImages = {
     '5-amino-1mq-10': 'images/5-amino-1mq-10.svg',
 
-  '5-amino-1mq-50': 'images/5-amino-1mq-50.svg',
+  '5-amino-1mq-50': '28_5-Amino-1MQ_50mg.png',
       'reta-10': '01_Reta_10mg.png',
 
   'reta-20': '02_Reta_20mg.png',
