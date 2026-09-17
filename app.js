@@ -10,6 +10,9 @@ const productImages = {
       'reta-10': '01_Reta_10mg.png',
 
   'reta-20': '02_Reta_20mg.png',
+      'mots-c-20': '03_MOTS-C_20mg.png',
+
+  'mots-c-10': '04_MOTS-C_10mg.png',
    'selank-10': 'Selank_10mg.png',
 
   'semax-10': 'Semax_10mg.png',
