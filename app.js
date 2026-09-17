@@ -1,3 +1,4 @@
+
 const $ = s => document.querySelector(s);
 let products = [];
 let cart = JSON.parse(localStorage.getItem('spartanCart') || '[]');
@@ -5,7 +6,7 @@ let activeProductId = null;
 const productImages = {
   '5-amino-1mq-10': 'images/5-amino-1mq-10mg.svg',
   '5-amino-1mq-50': 'images/5-amino-1mq-50mg.svg',
-  'selank-10': 'Selank_10mg.png',
+   'selank-10': 'Selank_10mg.png',
 
   'semax-10': 'Semax_10mg.png',
 
@@ -15,7 +16,9 @@ const productImages = {
 
   'b12-1ml': 'B12_1mL.png',
 
-  'glutathione-1500': 'Glutathione_1500mg.png'
+  'glutathione-1500': 'Glutathione_1500mg.png' 
+  
+  
 
 };
 function money(n){ return `$${Number(n).toFixed(2)}`; }
