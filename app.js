@@ -17,6 +17,7 @@ const productImages = {
       'tb-500-10': '07_TB-500_10mg.png',
       'kpv-10': '09_KPV_10mg.png',
     'kpv-5': '10_KPV_5mg.png',
+    'klow-80': '11_KLOW_80mg.png',
     
    'selank-10': 'Selank_10mg.png',
 
