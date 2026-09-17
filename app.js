@@ -24,6 +24,7 @@ const productImages = {
    'mt2-10': '15_MT-2_10mg.png', 
     'ghkcu-50': '16_GHK-CU_50mg.png',
     'ghkcu-100': '17_GHK-CU_100mg.png',
+    'nad-500': '18_NAD+_500mg.png',
     
     
    'selank-10': 'Selank_10mg.png',
