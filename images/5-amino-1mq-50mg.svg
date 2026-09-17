@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+
+  <rect width="600" height="800" fill="white"/>
+
+  <rect x="190" y="75" width="220" height="85" rx="12" fill="#222"/>
+
+  <rect x="205" y="90" width="190" height="12" fill="#555"/>
+
+  <rect x="205" y="115" width="190" height="12" fill="#555"/>
+
+  <rect x="220" y="155" width="160" height="65" rx="10"
+
+        fill="#f4f4f4" stroke="#222" stroke-width="5"/>
+
+  <rect x="135" y="205" width="330" height="480" rx="65"
+
+        fill="#fafafa" stroke="#222" stroke-width="6"/>
+
+  <rect x="155" y="330" width="290" height="230" rx="10"
+
+        fill="white" stroke="#111" stroke-width="3"/>
+
+  <path d="M300 355
+
+           C260 355 230 380 230 415
+
+           C230 445 250 465 270 475
+
+           L270 440
+
+           L250 420
+
+           L280 425
+
+           L300 455
+
+           L320 425
+
+           L350 420
+
+           L330 440
+
+           L330 475
+
+           C350 465 370 445 370 415
+
+           C370 380 340 355 300 355Z"
+
+        fill="#111"/>
+
+  <text x="300" y="500" text-anchor="middle"
+
+        font-family="Arial, sans-serif" font-size="20" font-weight="bold">
+
+    SPARTAN ADVANCED RESEARCH
+
+  </text>
+
+  <text x="300" y="530" text-anchor="middle"
+
+        font-family="Arial, sans-serif" font-size="25" font-weight="bold">
+
+    5-AMINO-1MQ
+
+  </text>
+
+  <text x="300" y="557" text-anchor="middle"
+
+        font-family="Arial, sans-serif" font-size="21" font-weight="bold">
+
+    50 mg
+
+  </text>
+
+  <text x="300" y="590" text-anchor="middle"
+
+        font-family="Arial, sans-serif" font-size="15">
+
+    FOR RESEARCH ONLY
+
+  </text>
+
+</svg>
