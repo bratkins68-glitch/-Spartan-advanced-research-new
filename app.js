@@ -19,6 +19,7 @@ const productImages = {
     'kpv-5': '10_KPV_5mg.png',
     'klow-80': '11_KLOW_80mg.png',
    'glow-70': '12_GLOW_70mg.png', 
+   'tesamorelin-10': '13_Tesamorelin_10mg.png', 
     
    'selank-10': 'Selank_10mg.png',
 
