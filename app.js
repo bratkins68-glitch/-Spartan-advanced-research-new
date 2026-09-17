@@ -23,6 +23,7 @@ const productImages = {
   'mt1-10': '14_MT-1_10mg.png', 
    'mt2-10': '15_MT-2_10mg.png', 
     'ghkcu-50': '16_GHK-CU_50mg.png',
+    'ghkcu-100': '17_GHK-CU_100mg.png',
     
     
    'selank-10': 'Selank_10mg.png',
