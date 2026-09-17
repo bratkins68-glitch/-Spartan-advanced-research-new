@@ -7,6 +7,9 @@ const productImages = {
     '5-amino-1mq-10': 'images/5-amino-1mq-10.svg',
 
   '5-amino-1mq-50': 'images/5-amino-1mq-50.svg',
+      'reta-10': '01_Reta_10mg.png',
+
+  'reta-20': '02_Reta_20mg.png',
    'selank-10': 'Selank_10mg.png',
 
   'semax-10': 'Semax_10mg.png',
