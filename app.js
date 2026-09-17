@@ -16,6 +16,7 @@ const productImages = {
       'bpc-157-10': '06_BPC-157_10mg.png',
       'tb-500-10': '07_TB-500_10mg.png',
       'kpv-10': '09_KPV_10mg.png',
+    'kpv-5': '10_KPV_5mg.png',
     
    'selank-10': 'Selank_10mg.png',
 
