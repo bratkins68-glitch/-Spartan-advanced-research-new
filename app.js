@@ -20,7 +20,8 @@ const productImages = {
     'klow-80': '11_KLOW_80mg.png',
    'glow-70': '12_GLOW_70mg.png', 
    'tesamorelin-10': '13_Tesamorelin_10mg.png', 
-  'mt1-10': '14_MT-1_10mg.png',  
+  'mt1-10': '14_MT-1_10mg.png', 
+   'mt2-10': '15_MT-2_10mg.png', 
     
     
    'selank-10': 'Selank_10mg.png',
