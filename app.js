@@ -4,7 +4,7 @@ let products = [];
 let cart = JSON.parse(localStorage.getItem('spartanCart') || '[]');
 let activeProductId = null;
 const productImages = {
-  '5-amino-1mq-10': '5-Amino-1MQ_10mg.png',
+'5-amino-1mq-10': 'images/5-amino-1mq-10mg.svg',
 
   '5-amino-1mq-50': '28_5-Amino-1MQ_50mg.png',
       'reta-10': '01_Reta_10mg.png',
