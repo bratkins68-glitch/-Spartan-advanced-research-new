@@ -14,6 +14,8 @@ const productImages = {
 
   'mots-c-10': '04_MOTS-C_10mg.png',
       'bpc-157-10': '06_BPC-157_10mg.png',
+      'tb-500-10': '07_TB-500_10mg.png',
+    
    'selank-10': 'Selank_10mg.png',
 
   'semax-10': 'Semax_10mg.png',
