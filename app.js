@@ -18,6 +18,7 @@ const productImages = {
       'kpv-10': '09_KPV_10mg.png',
     'kpv-5': '10_KPV_5mg.png',
     'klow-80': '11_KLOW_80mg.png',
+   'glow-70': '12_GLOW_70mg.png', 
     
    'selank-10': 'Selank_10mg.png',
 
