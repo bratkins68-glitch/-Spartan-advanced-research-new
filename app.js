@@ -22,6 +22,7 @@ const productImages = {
    'tesamorelin-10': '13_Tesamorelin_10mg.png', 
   'mt1-10': '14_MT-1_10mg.png', 
    'mt2-10': '15_MT-2_10mg.png', 
+    'ghkcu-50': '16_GHK-CU_50mg.png',
     
     
    'selank-10': 'Selank_10mg.png',
