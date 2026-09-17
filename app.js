@@ -26,6 +26,7 @@ const productImages = {
     'ghkcu-100': '17_GHK-CU_100mg.png',
     'nad-500': '18_NAD+_500mg.png',
     'nad-1000': '19_NAD+_1000mg.png',
+    'cjc-ipa': '20_CJC-1295+Ipamorelin_5mg+5mg.png',
     
     
    'selank-10': 'Selank_10mg.png',
